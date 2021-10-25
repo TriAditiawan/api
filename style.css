@@ -1,0 +1,85 @@
+body {
+  font-family: "Space Grotesk", sans-serif;
+}
+.navbar {
+  background-color: #43affc !important;
+}
+.btn-satu {
+  color: white !important;
+  background-color: #43affc !important;
+  width: 100%;
+}
+#home {
+  background-color: #43affc !important;
+  height: 1100px;
+}
+#jadwal {
+  background-color: #43affc !important;
+  height: 100vh;
+}
+#about {
+  background-color: #43affc !important;
+  height: 100vh;
+}
+
+#about .container {
+  padding-top: 70px;
+}
+.card1 {
+  margin-top: 100px;
+}
+.card-header {
+  color: #43affc !important;
+}
+footer a {
+  color: #43affc !important;
+  text-decoration: none;
+}
+#about .container a {
+  text-decoration: none;
+  color: white !important;
+}
+ul {
+  list-style: none;
+}
+.card-title2 {
+  font-size: 70px;
+  position: relative;
+}
+.card-title2::after {
+  content: "°C";
+  position: absolute;
+  z-index: 2;
+  font-size: 25px;
+  font-weight: bold;
+}
+.deskt {
+  text-transform: capitalize;
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+.card-icon {
+  width: 150px;
+  margin: auto;
+  display: block;
+}
+.bawah {
+  border-top: 2px solid #43affc;
+}
+.bawah div:nth-child(1) {
+  border-right: 2px solid #43affc;
+}
+.bawah .col-6 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.col-6 i {
+  font-size: 3em;
+  color: #43affc;
+  /* display: block;
+  margin: auto; */
+}
+.col-6 .detail p {
+  margin: 0;
+  padding: 0;
+}

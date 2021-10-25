@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Jadwal Sholat</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <section id="jadwal">
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top shadow-sm">
+        <div class="container">
+          <a class="navbar-brand" href="#home">Tri Aditiawan</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item"></li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="./index.html">Cuaca </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="./jadwalsholat.html">Jadwal Sholat </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="./tentang.html">Tentang </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- Akhir Navbar -->
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="card card1">
+              <div class="card-header">Jadwal sholat</div>
+              <div class="card-body">
+                <p class="card-text">Pilih daerah</p>
+                <select class="form-select" aria-label="Default select example" id="option"></select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center mt-5" id="tampil-data"></div>
+      </div>
+    </section>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path
+        fill="#43affc"
+        fill-opacity="1"
+        d="M0,96L60,90.7C120,85,240,75,360,101.3C480,128,600,192,720,213.3C840,235,960,213,1080,192C1200,171,1320,149,1380,138.7L1440,128L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
+      ></path>
+    </svg>
+    <!-- footer -->
+    <footer class="text-center">
+      <img src="p.jpg" alt="img eror" width="80" class="rounded-circle img-thumbnail mb-2" /><br />
+      <a href="https://www.instagram.com/triaditiawan0/">Tri Aditiawan</a>
+      <p class="text-center mt-3">
+        Dibuat dengan <i class="bi bi-heart-fill text-danger"></i> oleh <a href="https://github.com/TriAditiawan">Tri</a>
+      </p>
+    </footer>
+    <!--Akhir footer -->
+    <!-- jquery -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const date = new Date();
+      const tahun = date.getFullYear();
+      const bulan = date.getUTCMonth();
+      const hari = date.getUTCDay();
+
+      // the hour in your current time zone
+
+      // https://api.myquran.com/v1/sholat/kota/semua
+      $.getJSON("https://api.myquran.com/v1/sholat/kota/semua", function (result) {
+        $.each(result, function (i, result) {
+          $("#option").append(`<option  value="` + result.id + `">` + result.lokasi + `</option>`);
+        });
+      });
+      $("#option").on("change", function () {
+        var id = $("#option").val();
+        $.getJSON(`https://api.myquran.com/v1/sholat/jadwal/` + id + `/` + tahun + `/` + bulan + `/` + hari + ``, function (result) {
+          $("#tampil-data").html(
+            `
+          <div class="col-md-6">
+            <div class="card">
+             <div class="card-header">
+             ` +
+              result.data.lokasi +
+              `, 
+              ` +
+              result.data.daerah +
+              `
+          </div>
+          <div class="card-body">
+            <h5 class="card-title pb-3">` +
+              result.data.jadwal.tanggal +
+              `</h5>
+              <div class="row">
+            <div class="col-6">
+            <p class="card-text">Imsak</p>
+            <p class="card-text">subuh</p>
+            <p class="card-text">dzuhur</p>
+            <p class="card-text">ashar</p>
+            <p class="card-text">maghrib</p>
+            <p class="card-text">isya</p>
+            </div>
+            <div class="col-6">
+            <p class="card-text">` +
+              result.data.jadwal.imsak +
+              `</p>
+            <p class="card-text">` +
+              result.data.jadwal.subuh +
+              `</p>
+            <p class="card-text">` +
+              result.data.jadwal.dzuhur +
+              `</p>
+            <p class="card-text">` +
+              result.data.jadwal.ashar +
+              `</p>
+            <p class="card-text">` +
+              result.data.jadwal.maghrib +
+              `</p>
+            <p class="card-text">` +
+              result.data.jadwal.isya +
+              `</p>
+            </div>
+            
+            
+          </div>
+        </div>
+      </div>`
+          );
+        });
+      });
+    </script>
+    <!-- Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
