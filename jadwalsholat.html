@@ -90,6 +90,7 @@
       const tahun = date.getFullYear();
       const bulan = date.getUTCMonth();
       const hari = date.getDate();
+      const realBulan=bulan + 1;
 
       // the hour in your current time zone
 
@@ -101,7 +102,7 @@
       });
       $("#option").on("change", function () {
         var id = $("#option").val();
-        $.getJSON(`https://api.myquran.com/v1/sholat/jadwal/` + id + `/` + tahun + `/` + bulan + `/` + hari + ``, function (result) {
+        $.getJSON(`https://api.myquran.com/v1/sholat/jadwal/` + id + `/` + tahun + `/` + realBulan + `/` + hari + ``, function (result) {
           $("#tampil-data").html(
             `
           <div class="col-md-6">
