@@ -15,7 +15,7 @@ body {
 }
 #jadwal {
   background-color: #43affc !important;
-  height: 100vh;
+  height: 2300px;
 }
 #about {
   background-color: #43affc !important;
@@ -28,9 +28,11 @@ body {
 .card1 {
   margin-top: 100px;
 }
-.card-header {
+.card-header,
+.waktuapi {
   color: #43affc !important;
 }
+
 footer a {
   color: #43affc !important;
   text-decoration: none;
@@ -82,4 +84,13 @@ ul {
 .col-6 .detail p {
   margin: 0;
   padding: 0;
+}
+.white {
+  color: white;
+}
+
+@media (max-width: 576px) {
+  .padding {
+    padding-right: 180px !important;
+  }
 }
