@@ -21,7 +21,10 @@ body {
   background-color: #43affc !important;
   height: 100vh;
 }
-
+.table-striped tbody tr:hover {
+  background-color: #757575;
+  color: white;
+}
 #about .container {
   padding-top: 70px;
 }
