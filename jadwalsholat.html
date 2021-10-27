@@ -16,7 +16,7 @@
   </head>
   <body>
     <!-- Navbar -->
-    <section id="jadwal">
+   
       <nav class="navbar navbar-expand-md navbar-dark fixed-top shadow-sm">
         <div class="container">
           <a class="navbar-brand" href="#home">Tri Aditiawan</a>
@@ -48,11 +48,17 @@
         </div>
       </nav>
       <!-- Akhir Navbar -->
+      <section id="jadwal">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-6">
             <div class="card card1">
-              <div class="card-header" id="jamGerak">Jadwal sholat</div>
+              <div class="card-header">
+                <div class="row">
+                  <div class="col-8"> Jadwal sholat</div>
+                  <div class="col-4"  id="jamGerak"></div>
+                </div>
+               </div>
               <div class="card-body">
                 <p class="card-text">Pilih daerah</p>
                 <select class="form-select" aria-label="Default select example" id="option"></select>
@@ -91,16 +97,30 @@
       crossorigin="anonymous"
     ></script>
     <script>
+      // the hour in your current time zone
       const date = new Date();
       const tahun = date.getFullYear();
       const bulan = date.getUTCMonth();
       const realBulan = bulan + 1;
       const hari = date.getDate();
-      const jam=date.getHours();
-      const menit=date.getMinutes();
-      const detik=date.getSeconds();
-      const jamMinute=jam+':'+menit;  
-      // the hour in your current time zone
+      const jam=("0"+date.getHours()).slice(-2);
+      const menit=("0"+date.getMinutes()).slice(-2);
+      const detik=("0"+date.getSeconds()).slice(-2);
+      const jamMinute=jam+':'+menit;
+      function dataJam(){
+        const dateD = new Date();
+        const jamD=("0"+dateD.getHours()).slice(-2);
+        const menitD=("0"+dateD.getMinutes()).slice(-2);
+        const detikD=("0"+dateD.getSeconds()).slice(-2);
+          $("#jamGerak").html(`<p>`+jamD+`:`+menitD+`:`+detikD+`</p>`);
+          setTimeout('dataJam()', 1000);
+        }  
+        dataJam();
+        
+
+      
+     
+      
 
       // https://api.myquran.com/v1/sholat/kota/semua
       $.getJSON("https://api.myquran.com/v1/sholat/kota/semua", function (result) {
@@ -117,7 +137,7 @@
             <div class="card">
              <div class="card-header">
               <div class="row">
-              <div class="col-9">   
+              <div class="col-10">   
              ` +
               result.data.lokasi +
               `,
@@ -125,13 +145,13 @@
               result.data.daerah +
               `
              </div>
-              <div class="col-3"></div>
+              <div class="col-2" ></div>
             </div>
            
           </div>
           <div class="card-body">
             <p class="card-text">waktu sholat selanjutnya</p>
-            <h5 class="display-1" id="waktusholatselanjutnya"></h5>
+            <h5 class="display-1" id="waktusholatselanjutnya"><span id="memek"></span></h5>
             <h5 class="card-title waktuapi pb-3 mt-5">` +
               result.data.jadwal.tanggal +
               `</h5>
@@ -170,9 +190,9 @@
           )
           
            if(jamMinute<=result.data.jadwal.subuh){
-          $('#waktusholatselanjutnya').text(`Subuh `+result.data.jadwal.subuh+``)}
+          $('#waktusholatselanjutnya').text(`Subuh `+result.data.jadwal.subuh+``) }
           else if(jamMinute<=result.data.jadwal.dzuhur){
-          $('#waktusholatselanjutnya').text(`Dzuhur `+result.data.jadwal.dzuhur+``)}
+          $('#waktusholatselanjutnya').text(`Dzuhur `+result.data.jadwal.dzuhur+``);}
           else if(jamMinute<=result.data.jadwal.ashar){
           $('#waktusholatselanjutnya').text(`Ashar `+result.data.jadwal.ashar+``)}
           else if(jamMinute<=result.data.jadwal.maghrib){
@@ -181,10 +201,10 @@
           $('#waktusholatselanjutnya').text(`Isya `+result.data.jadwal.isya+``)}
           else if(jamMinute>=result.data.jadwal.isya){
             $('#waktusholatselanjutnya').text(`Subuh `+result.data.jadwal.subuh+``)}
-
+          
         });
         $.getJSON(`https://api.myquran.com/v1/sholat/jadwal/` + id + `/` + tahun + `/` + realBulan + ``, function (result) {
-          console.log(result);
+          
           $("#satuBulan").html(`
           <div class="row">
           <div class="col" id="bulandata">
@@ -192,7 +212,7 @@
           </div>
         </div>
       </div>
-      <div class="container table-responsive">
+      <div class=".container-fluid table-responsive">
         <div class="row justify-content-center">
           <div class="col-md-12">
             <table class="table table-striped bg-white">
