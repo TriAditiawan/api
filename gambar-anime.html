@@ -74,7 +74,21 @@
               <div class="card-header bg-secondary text-white">Aplikasi gambar anime acak</div>
               <div class="card-body">
                 <p class="card-text">Berikut adalah semua halaman berbeda yang dapat Anda jelajahi.</p>
-                <h5 class="card-title">Pilih kategori</h5>
+                <h6 class="card-title">Pilih berapa gambar yang ingin ditampilkan</h6>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="jumlahgambar" id="inlineRadio1" value="1" />
+                  <label class="form-check-label" for="inlineRadio1">1</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="jumlahgambar" id="inlineRadio1" value="10" checked />
+                  <label class="form-check-label" for="inlineRadio1">10</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="jumlahgambar" id="inlineRadio1" value="20" />
+                  <label class="form-check-label" for="inlineRadio1">20</label>
+                </div>
+
+                <h5 class="card-title mt-3">Pilih kategori</h5>
                 <div class="row">
                   <div class="col-6">
                     <select class="form-select" aria-label="Default select example" id="sfw">
@@ -126,6 +140,22 @@
             </div>
           </div>
         </div>
+        <div class="row pt-3 d-none" id="btnLoading">
+          <div class="col text-center">
+            <button class="btn btn-secondary" type="button" disabled>
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              Loading...
+            </button>
+          </div>
+        </div>
+        <div class="row pt-3 d-none" id="gagal">
+          <div class="col">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Data gagal ditampilkan</strong> coba ulangi beberapa saat lagi
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div>
+        </div>
         <div class="row pt-5 justify-content-center" id="tampilDataSfw"></div>
       </div>
     </section>
@@ -154,9 +184,12 @@
     <script>
       //https://api.waifu.pics/type/category
       //https://api.waifu.pics/nsfw/blowjob
+      const btnLoading = $("#btnLoading");
+      const gagal = $("#gagal");
       $("#sfw").on("change", function () {
         $("#tampilDataSfw").html(``);
-        for (let i = 0; i < 20; i++) {
+        const jumlahGambar = $('input[name="jumlahgambar"]:checked').val();
+        for (let i = 0; i < jumlahGambar; i++) {
           const data = $("#sfw").val();
           $.getJSON(`https://api.waifu.pics/sfw/` + data + ``, function (result) {
             $("#tampilDataSfw").append(
@@ -174,7 +207,8 @@
       });
       $("#nsfw").on("change", function () {
         $("#tampilDataSfw").html(``);
-        for (let i = 0; i < 20; i++) {
+        const jumlahGambar = $('input[name="jumlahgambar"]:checked').val();
+        for (let i = 0; i < jumlahGambar; i++) {
           const data = $("#nsfw").val();
           $.getJSON(`https://api.waifu.pics/nsfw/` + data + ``, function (result) {
             $("#tampilDataSfw").append(
