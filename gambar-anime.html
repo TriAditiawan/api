@@ -32,7 +32,7 @@
   </head>
   <body>
     <!-- navbar -->
-    <nav class="navbar navbar-expand-md navbar-dark bg-secondary fixed-top shadow-sm">
+    <nav class="navbar navbar-expand-md navbar-dark bg-secondary fixed-top">
       <div class="container">
         <a class="navbar-brand" href="#">Tri Aditiawan</a>
         <button
@@ -50,6 +50,9 @@
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="./index.html">Cuaca </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="./cuaca2.html">Cuaca bmkg</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="./jadwalsholat.html">Jadwal Sholat </a>
@@ -70,7 +73,7 @@
       <div class="container anime">
         <div class="row justify-content-center">
           <div class="col-md-6">
-            <div class="card shadow">
+            <div class="card">
               <div class="card-header bg-secondary text-white">Aplikasi gambar anime acak</div>
               <div class="card-body">
                 <p class="card-text">Berikut adalah semua halaman berbeda yang dapat Anda jelajahi.</p>
@@ -80,12 +83,12 @@
                   <label class="form-check-label" for="inlineRadio1">1</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="jumlahgambar" id="inlineRadio2" value="10" checked />
-                  <label class="form-check-label" for="inlineRadio2">10</label>
+                  <input class="form-check-input" type="radio" name="jumlahgambar" id="inlineRadio1" value="10" checked />
+                  <label class="form-check-label" for="inlineRadio1">10</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="jumlahgambar" id="inlineRadio3" value="20" />
-                  <label class="form-check-label" for="inlineRadio3">20</label>
+                  <input class="form-check-input" type="radio" name="jumlahgambar" id="inlineRadio1" value="20" />
+                  <label class="form-check-label" for="inlineRadio1">20</label>
                 </div>
 
                 <h5 class="card-title mt-3">Pilih kategori</h5>
@@ -148,14 +151,7 @@
             </button>
           </div>
         </div>
-        <div class="row pt-3 d-none" id="gagal">
-          <div class="col">
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-              <strong>Data gagal ditampilkan</strong> coba ulangi beberapa saat lagi
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-          </div>
-        </div>
+        <div class="row pt-3" id="gagal"></div>
         <div class="row pt-5 justify-content-center" id="tampilDataSfw"></div>
       </div>
     </section>
@@ -186,23 +182,51 @@
       //https://api.waifu.pics/nsfw/blowjob
       const btnLoading = $("#btnLoading");
       const gagal = $("#gagal");
+
       $("#sfw").on("change", function () {
         $("#tampilDataSfw").html(``);
         const jumlahGambar = $('input[name="jumlahgambar"]:checked').val();
         for (let i = 0; i < jumlahGambar; i++) {
           const data = $("#sfw").val();
-          $.getJSON(`https://api.waifu.pics/sfw/` + data + ``, function (result) {
-            $("#tampilDataSfw").append(
-              ` <div class="col-md-3 mb-3">
+          $.ajax({
+            url: `https://api.waifu.pics/sfw/` + data + ``,
+            type: "get",
+            dataType: "json",
+            success: function (result) {
+              $("#tampilDataSfw").append(
+                ` <div class="col-md-3 mb-3">
               <div class="card">
                 <img src="` +
-                result.url +
-                `" alt="" />
+                  result.url +
+                  `" alt="" />
               </div>
             </div>
             `
-            );
+              );
+            },
+            error: function (gagal) {
+              const pesanKesalahan = $("#gagal");
+              $("#tampil-data").html(``);
+              pesanKesalahan.html(`<div class="col-md-6">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Data gagal ditampilkan, </strong> coba ulangi beberapa saat lagi.  
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div>`);
+            },
           });
+          // $.getJSON(`https://api.waifu.pics/sfw/` + data + ``, function (result) {
+          //   $("#tampilDataSfw").append(
+          //     ` <div class="col-md-3 mb-3">
+          //     <div class="card">
+          //       <img src="` +
+          //       result.url +
+          //       `" alt="" />
+          //     </div>
+          //   </div>
+          //   `
+          //   );
+          // });
         }
       });
       $("#nsfw").on("change", function () {
