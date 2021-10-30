@@ -40,6 +40,9 @@
                 <a class="nav-link active" aria-current="page" href="./index.html">Cuaca </a>
               </li>
               <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="./cuaca2.html">Cuaca bmkg</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="./jadwalsholat.html">Jadwal Sholat </a>
               </li>
               <li class="nav-item">
@@ -71,6 +74,18 @@
             </div>
           </div>
         </div>
+        <div class="row pt-3 justify-content-center " id="gagal">
+          
+        </div>
+        <div class="row pt-3 d-none" id="btnLoading">
+          <div class="col text-center">
+            <button class="btn btn-secondary" type="button" disabled>
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              Loading...
+            </button>
+          </div>
+        </div>
+       
         <div class="row justify-content-center mt-5" id="tampil-data"></div>
       </div>
 
@@ -101,7 +116,7 @@
       integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
       crossorigin="anonymous"
     ></script>
-    <script>
+  <script>
       // the hour in your current time zone
       const date = new Date();
       const tahun = date.getFullYear();
@@ -128,14 +143,42 @@
       
 
       // https://api.myquran.com/v1/sholat/kota/semua
-      $.getJSON("https://api.myquran.com/v1/sholat/kota/semua", function (result) {
-        $.each(result, function (i, result) {
+      // $.getJSON("https://api.myquran.com/v1/sholat/kota/semua", function (result) {
+      //   $.each(result, function (i, result) {
+      //     $("#option").append(`<option  value="` + result.id + `">` + result.lokasi + `</option>`);
+      //   });
+      // });
+      function tampilDataKota(){
+          
+        $.ajax({
+          url:'https://api.myquran.com/v1/sholat/kota/semua',
+          type:'get',
+          dataType:'json',
+          success:function(result){
+            $.each(result, function (i, result) {
           $("#option").append(`<option  value="` + result.id + `">` + result.lokasi + `</option>`);
         });
-      });
+          },
+          error:function(gagal){
+            const pesanKesalahan = $("#gagal");
+            pesanKesalahan.html(`<div class="col-md-6">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Data gagal ditampilkan, </strong> coba muat ulang halaman website  
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div>`)
+          }
+        })
+        }
+
+        tampilDataKota();
+
+
+
       $("#option").on("change", function () {
         var id = $("#option").val();
         $.getJSON(`https://api.myquran.com/v1/sholat/jadwal/` + id + `/` + tahun + `/` + realBulan + `/` + hari + ``, function (result) {
+          $("#gagal").html(``);
           $("#tampil-data").html(
             `
           <div class="col-md-6">
