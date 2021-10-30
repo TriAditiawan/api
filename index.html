@@ -4,7 +4,10 @@
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+    <!-- font  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -12,29 +15,20 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <!-- bootstrap icon -->
-    <!-- Bootstrap Icons -->
+    <!-- bottstrap icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
-    <style>
-      #anime {
-        padding-top: 100px;
-      }
-      .container.anime {
-        min-height: 100vh;
-        padding-bottom: 50px;
-      }
-      footer a {
-        text-decoration: none;
-      }
-    </style>
+    <!-- icon 2 -->
+    <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
+    <!-- my css -->
+    <link rel="stylesheet" href="./style.css" />
 
-    <title>Anime</title>
+    <title>cuaca</title>
   </head>
   <body>
-    <!-- navbar -->
-    <nav class="navbar navbar-expand-md navbar-dark bg-secondary fixed-top">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top shadow-sm">
       <div class="container">
-        <a class="navbar-brand" href="#">Tri Aditiawan</a>
+        <a class="navbar-brand" href="#home">Tri Aditiawan</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -67,190 +61,142 @@
         </div>
       </div>
     </nav>
-    <!-- akhir navbar -->
+    <!-- Akhir Navbar -->
     <!-- content -->
-    <section id="anime">
-      <div class="container anime">
+    <section id="home">
+     
+      <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-6">
-            <div class="card">
-              <div class="card-header bg-secondary text-white">Aplikasi gambar anime acak</div>
+            <div class="card card1">
+              <h5 class="card-header pt-3 pb-3">Aplikasi cuaca</h5>
               <div class="card-body">
-                <p class="card-text">Berikut adalah semua halaman berbeda yang dapat Anda jelajahi.</p>
-                <h6 class="card-title">Pilih berapa gambar yang ingin ditampilkan</h6>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="jumlahgambar" id="inlineRadio1" value="1" />
-                  <label class="form-check-label" for="inlineRadio1">1</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="jumlahgambar" id="inlineRadio1" value="10" checked />
-                  <label class="form-check-label" for="inlineRadio1">10</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="jumlahgambar" id="inlineRadio1" value="20" />
-                  <label class="form-check-label" for="inlineRadio1">20</label>
-                </div>
-
-                <h5 class="card-title mt-3">Pilih kategori</h5>
-                <div class="row">
-                  <div class="col-6">
-                    <select class="form-select" aria-label="Default select example" id="sfw">
-                      <option selected>SWF</option>
-                      <option value="waifu">waifu</option>
-                      <option value="neko">neko</option>
-                      <option value="shinobu">shinobu</option>
-                      <option value="megumin">megumin</option>
-                      <option value="bully">bully</option>
-                      <option value="cuddle">cuddle</option>
-                      <option value="cry">cry</option>
-                      <option value="hug">hug</option>
-                      <option value="awoo">awoo</option>
-                      <option value="kiss">kiss</option>
-                      <option value="lick">lick</option>
-                      <option value="pat">pat</option>
-                      <option value="smug">smug</option>
-                      <option value="bonk">bonk</option>
-                      <option value="yeet">yeet</option>
-                      <option value="blush">blush</option>
-                      <option value="smile">smile</option>
-                      <option value="highfive">highfive</option>
-                      <option value="wave">wave</option>
-                      <option value="handhold">handhold</option>
-                      <option value="nom">nom</option>
-                      <option value="bite">bite</option>
-                      <option value="glomp">glomp</option>
-                      <option value="slap">slap</option>
-                      <option value="kill">kill</option>
-                      <option value="kick">kick</option>
-                      <option value="happy">happy</option>
-                      <option value="wink">wink</option>
-                      <option value="poke">poke</option>
-                      <option value="dance">dance</option>
-                      <option value="cringe">cringe</option>
-                    </select>
-                  </div>
-                  <div class="col-6">
-                    <select class="form-select" aria-label="Default select example" id="nsfw">
-                      <option selected>NSFW</option>
-                      <option value="waifu">waifu</option>
-                      <option value="neko">neko</option>
-                      <option value="trap">trap</option>
-                      <option value="blowjob">blowjob</option>
-                    </select>
-                  </div>
-                </div>
+                <form action="" class="mb-3 mt-2">
+                  <label for="">Masukan nama kota</label>
+                  <input type="text" class="form-control input-keyword mt-2" id="search-input" />
+                  <button type="button" class="btn btn-satu mt-3" id="search-button">Lihat</button>
               </div>
             </div>
           </div>
         </div>
-        <div class="row pt-3 d-none" id="btnLoading">
-          <div class="col text-center">
-            <button class="btn btn-secondary" type="button" disabled>
-              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-              Loading...
-            </button>
+        <div class="row pt-3 justify-content-center " id="gagal">
+          
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-6 "id="tampil-data">
+           
           </div>
         </div>
-        <div class="row pt-3" id="gagal"></div>
-        <div class="row pt-5 justify-content-center" id="tampilDataSfw"></div>
       </div>
     </section>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
       <path
-        fill="#6c757d"
+        fill="#43affc"
         fill-opacity="1"
-        d="M0,128L60,112C120,96,240,64,360,80C480,96,600,160,720,165.3C840,171,960,117,1080,112C1200,107,1320,149,1380,170.7L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
+        d="M0,96L60,90.7C120,85,240,75,360,101.3C480,128,600,192,720,213.3C840,235,960,213,1080,192C1200,171,1320,149,1380,138.7L1440,128L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
       ></path>
     </svg>
-    <footer class="text-center bg-secondary pb-5 pt-3">
-      <img src="p.jpg" alt="img eror" width="80" class="rounded-circle img-thumbnail mb-2" /><br />
-      <a href="https://www.instagram.com/triaditiawan0/" class="text-white">Tri Aditiawan</a>
-      <p class="text-center mt-3 text-white">
-        Dibuat dengan <i class="bi bi-heart-fill text-danger"></i> oleh <a href="https://github.com/TriAditiawan" class="text-white">Tri</a>
-      </p>
+
+    <!-- content -->
+    <!-- footer -->
+    <footer class="text-center">
+      <img src="p.jpg" alt="img eror" width="80" class="rounded-circle img-thumbnail mb-2"><br>
+      <a href="https://www.instagram.com/triaditiawan0/">Tri Aditiawan</a>
+      <p class="text-center mt-3">Dibuat dengan <i class="bi bi-heart-fill text-danger"></i> oleh <a href="https://github.com/TriAditiawan">Tri</a></p>
     </footer>
-
-    <!--akhir content -->
+    <!--Akhir footer -->
     <!-- jquery -->
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.js"
-      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
-      //https://api.waifu.pics/type/category
-      //https://api.waifu.pics/nsfw/blowjob
-      const btnLoading = $("#btnLoading");
-      const gagal = $("#gagal");
-
-      $("#sfw").on("change", function () {
-        $("#tampilDataSfw").html(``);
-        const jumlahGambar = $('input[name="jumlahgambar"]:checked').val();
-        for (let i = 0; i < jumlahGambar; i++) {
-          const data = $("#sfw").val();
-          $.ajax({
-            url: `https://api.waifu.pics/sfw/` + data + ``,
-            type: "get",
-            dataType: "json",
-            success: function (result) {
-              $("#tampilDataSfw").append(
-                ` <div class="col-md-3 mb-3">
-              <div class="card">
-                <img src="` +
-                  result.url +
-                  `" alt="" />
+      $('#search-button').on('click', function(){
+        
+       
+        $.ajax({
+          url:'https://api.openweathermap.org/data/2.5/weather',
+          type:'get',
+          dataType:'json',
+          data:{
+            'APPID':'8510c6d2b69034ad111c216139de884d',
+            'q':$('#search-input').val(),
+            'units':'metric',
+            'lang':'id'
+          },
+          success:function(result){
+            $("#gagal").html(``);
+                    
+            $('#tampil-data').html(`
+             <div class="card mt-3">
+             <h5 class="card-header pt-3 pb-3"><i class="bx bx-map"></i> `+result.name+`, <span class="negara"></span></h5>
+             <div class="card-body">
+              <img src="" class="card-icon" alt="...">
+              <h5 class="card-title card-title2 text-center">`+result.main.temp+`</h5>
+              <h4 class="text-center deskt">`+result.weather[0].description+`</h4>
+              <p>Temperatur dari `+result.main.temp_min+`°C hingga `+result.main.temp_max+`°C </p>
+              <p>Kecepatan angin `+result.wind.speed+`m/s</p>
+              <p>Awan `+result.clouds.all+`%</p>
+              <p>koordinat geografis: [`+result.coord.lat+` `+result.coord.lon+`]</p>
+              <div class="row bawah">
+                <div class="col-6 d-flex">
+                  <i class="bx bxs-thermometer"></i>
+                  <div class="detail">
+                    <p> `+result.main.feels_like+`°C</p>
+                    <p>terasa seperti</p>  
+                  </div>
+               
+               </div>
+               <div class="col-6 d-flex">
+                <i class="bx bxs-droplet-half"></i>
+                <div class="detail">
+                  <p> `+result.main.humidity+`%</p>
+                  <p>Kelembapan</p>
+                  
+                </div
+                
+                </div>
               </div>
-            </div>
-            `
-              );
-            },
-            error: function (gagal) {
-              const pesanKesalahan = $("#gagal");
-              $("#tampil-data").html(``);
-              pesanKesalahan.html(`<div class="col-md-6">
+              </div>
+              </div>
+              `)
+              var id =result.weather[0].id;
+           if (id == 800) {
+               $('.card-icon').attr('src', 'icons/clear.svg');
+              } else if (id >= 200 && id <= 232) {
+                $('.card-icon').attr('src', 'icons/storm.svg');
+              } 
+              else if (id >= 600 && id <= 622) {
+              $('.card-icon').attr('src', 'icons/snow.svg');
+              } else if (id >= 701 && id <= 781) {
+              $('.card-icon').attr('src', 'icons/haze.svg');
+              } else if (id >= 801 && id <= 804) {
+              $('.card-icon').attr('src', 'icons/cloud.svg');
+              } else if ((id >= 500 && id <= 531) || (id >= 300 && id <= 321)) {
+              $('.card-icon').attr('src', 'icons/rain.svg');
+              }    
+              const negara =result.sys.country;
+              console.log(negara);
+              if(negara=="ID"){
+               $('.negara').html('Indonesia');
+              }else if(negara=="JP"){
+               $('.negara').html('Jepang');
+              }else if(negara=="US"){
+               $('.negara').html('Amerika serikat');
+              }
+          },
+          error:function(gagal){
+            const pesanKesalahan = $("#gagal");
+            $('#tampil-data').html(``);
+            pesanKesalahan.html(`<div class="col-md-6">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-              <strong>Data gagal ditampilkan, </strong> coba ulangi beberapa saat lagi.  
+              <strong>Kota yang anda masukan tidak terdaftar,</strong> coba periksa ejaan.  
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-          </div>`);
-            },
-          });
-          // $.getJSON(`https://api.waifu.pics/sfw/` + data + ``, function (result) {
-          //   $("#tampilDataSfw").append(
-          //     ` <div class="col-md-3 mb-3">
-          //     <div class="card">
-          //       <img src="` +
-          //       result.url +
-          //       `" alt="" />
-          //     </div>
-          //   </div>
-          //   `
-          //   );
-          // });
-        }
-      });
-      $("#nsfw").on("change", function () {
-        $("#tampilDataSfw").html(``);
-        const jumlahGambar = $('input[name="jumlahgambar"]:checked').val();
-        for (let i = 0; i < jumlahGambar; i++) {
-          const data = $("#nsfw").val();
-          $.getJSON(`https://api.waifu.pics/nsfw/` + data + ``, function (result) {
-            $("#tampilDataSfw").append(
-              ` <div class="col-md-3 mb-3">
-              <div class="card">
-                <img src="` +
-                result.url +
-                `" alt="" />
-              </div>
-            </div>
-            `
-            );
-          });
-        }
-      });
+          </div>`)
+          }
+        })
+      })
     </script>
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <!-- Bootstrap Bundle with Popper -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
