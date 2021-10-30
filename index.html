@@ -46,6 +46,9 @@
               <a class="nav-link active" aria-current="page" href="./index.html">Cuaca </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="./cuaca2.html">Cuaca bmkg</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="./jadwalsholat.html">Jadwal Sholat </a>
             </li>
             <li class="nav-item">
@@ -75,6 +78,9 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="row pt-3 justify-content-center " id="gagal">
+          
         </div>
         <div class="row justify-content-center">
           <div class="col-md-6 "id="tampil-data">
@@ -116,10 +122,8 @@
             'lang':'id'
           },
           success:function(result){
-           
-            
-          
-          
+            $("#gagal").html(``);
+                    
             $('#tampil-data').html(`
              <div class="card mt-3">
              <h5 class="card-header pt-3 pb-3"><i class="bx bx-map"></i> `+result.name+`, <span class="negara"></span></h5>
@@ -177,6 +181,16 @@
               }else if(negara=="US"){
                $('.negara').html('Amerika serikat');
               }
+          },
+          error:function(gagal){
+            const pesanKesalahan = $("#gagal");
+            $('#tampil-data').html(``);
+            pesanKesalahan.html(`<div class="col-md-6">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Kota yang anda masukan tidak terdaftar,</strong> coba periksa ejaan.  
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div>`)
           }
         })
       })
